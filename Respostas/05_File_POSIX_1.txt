@@ -1,0 +1,81 @@
+Considerando a biblioteca-padrão da linguagem C, responda:
+
+(a) Quais são as funções (e seus protótipos) para abrir e fechar arquivos?
+	FILE = *<nome do ponteiro pro arquivo>
+	<nome do ponteiro pro arquivo> = fopen(char *nome_do_arquivo, char * modo);
+
+	int fclose(<nome do ponteiro pro arquivo>);
+
+(b) Quais são as funções (e seus protótipos) para escrever em arquivos?
+
+	int putc(char <caracter_a_ser_escrito>,<nome do ponteiro pro arquivo>) //Escrita caracter a caracter
+	fwrite(void *buffer, sizeof(tipo_de_variável), numero_de_bytes, <nome do ponteiro pro arquivo> ) // Escrita de um conjunto de caracteres
+
+(c) Quais são as funções (e seus protótipos) para ler arquivos?
+
+	int getc(<nome do ponteiro pro arquivo>) //Ler um caracter do arquivo
+	fread(void *buffer, sizeof(tipo_de_variável), numero_de_bytes, <nome do ponteiro pro arquivo> ) // Leitura de um conjunto de caracteres
+
+(d) Quais são as funções (e seus protótipos) para reposicionar um ponteiro para arquivo?
+
+	int fseek(FILE *stream, long int offset, int whence)
+	Onde whence  pode ser:
+	SEEK_SET - Começo do arquivo
+	SEEK_CUR - Posição corrente do arquivo
+	SEEK_END - Fim do arquivo
+
+(e) Quais bibliotecas devem ser incluídas no código para poder utilizar as funções acima?
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+O que é a norma POSIX?
+
+POSIX - Portable Operating System Interface
+
+Considerando a norma POSIX, responda:
+
+(a) Quais são as funções (e seus protótipos) para abrir e fechar arquivos?
+
+	int open(const char* path, int oflag, ...)
+		path - caminho do arquivo
+		oflag - Flag de abertura podendo ser:
+
+		O_RDONLY
+		O_WRONLY
+		O_RDWR
+		O_NONBLOCK
+		O_APPEND
+		O_CREAT
+		O_TRUNC
+		O_EXCL
+		O_SHLOCK
+		O_EXLOCK
+		O_NOFOLLOW
+		O_SYMLINK
+		O_EVTONLY
+		O_CLOEXEC
+
+	int close (int nome_da_variavel_pro_arquivo)
+
+(b) Quais são as funções (e seus protótipos) para escrever em arquivos?
+
+	ssize_t write(int <nome_da_variavel_pro_arquivo>, void *buffer, size_t nbytes)
+
+(c) Quais são as funções (e seus protótipos) para ler arquivos?
+	
+	ssize_t read(int <nome_da_variavel_pro_arquivo>, void *buffer, size_t nbytes)
+
+(d) Quais são as funções (e seus protótipos) para reposicionar um ponteiro para arquivo?
+
+	off_t lseek(int nome_da_variavel_pro_arquivo, off_t offset, int whence);
+	Onde whence  pode ser:
+	SEEK_SET - Começo do arquivo
+	SEEK_CUR - Posição corrente do arquivo
+	SEEK_END - Fim do arquivo
+
+(e) Quais bibliotecas devem ser incluídas no código para poder utilizar as funções acima?
+
+	#include <fcntl.h>	// Para a funcao open()
+	#include <unistd.h>	// Para a funcao close()
