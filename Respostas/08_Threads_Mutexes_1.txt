@@ -1,0 +1,56 @@
+1. Quais são as vantagens e desvantagens em utilizar:
+
+(a) fork?
+
+Vantagem: Cada processo possui seu espaço de memória o que evita a possibilidade de corrupção de dados.
+Desvantagem: A troca de comunicação entre processos é menos eficiente.
+
+(b) threads?
+
+Vantagem: A comunicação é mais simple e fácil de se programar.
+Desvantagem: Todas as threads compartilham o mesmo espaço de memória, correndo o risco de ocorrer uma corrupção de dados.
+
+2. Quantas threads serão criadas após as linhas de código a seguir? Quantas coexistirão? Por quê?
+
+(a)
+
+```C
+void* funcao_thread_1(void *arg);
+void* funcao_thread_2(void *arg);
+
+int main (int argc, char** argv)
+{
+	pthread_t t1, t2;
+	pthread_create(&t1, NULL, funcao_thread_1, NULL);
+	pthread_create(&t2, NULL, funcao_thread_2, NULL);
+	pthread_join(t1, NULL);
+	pthread_join(t2, NULL);
+	return 0;
+}
+```
+Duas threads criadas e ambas coexistem, pois o comando de criação das threads são executados antes do comando que congela o program counter.
+
+(b)
+```C
+void* funcao_thread_1(void *arg);
+void* funcao_thread_2(void *arg);
+
+int main (int argc, char** argv)
+{
+	pthread_t t1, t2;
+	pthread_create(&t1, NULL, funcao_thread_1, NULL);
+	pthread_join(t1, NULL);
+	pthread_create(&t2, NULL, funcao_thread_2, NULL);
+	pthread_join(t2, NULL);
+	return 0;
+}
+```
+Duas threads criadas sem coexistência, pois o comando de criação das threads são executados intercalados com o comando que congela o program counter, protanto a segunda thread não inicia seu processo enquanto a priemira thread não fnalizar seu processo.
+
+3. Apresente as características e utilidades das seguintes funções:
+
+(a) `pthread_setcancelstate()`Define um estado para interromper determinado processo
+
+(b) `pthread_setcanceltype()`
+
+(DICA: elas são relacionadas à função pthread_cancel().)
