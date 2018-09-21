@@ -22,19 +22,20 @@ int main(int argc, const char *argv[]){
 	int i;
 	int j=1;
 
-pid_filho[0] = fork();
+//pid_filho[0] = fork();
 
 for(i=0;i<3;i++){
 
+	pid_filho[i] = fork();
 	if (pid_filho[i] == 0)
 	{
-	Incrementa_Variavel_Global(getpid());
+		Incrementa_Variavel_Global(getpid());
 	//printf("Eu sou processo filho: %d pid= %d mypid=%d\n",i, pid_filho[i], getpid());
+		return 0;
 	}
-	else{
-	pid_filho[j] = fork();
-	j++;
-	}
+//	else{
+//	j++;
+//	}
 
  }
 return 0;
