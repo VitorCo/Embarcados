@@ -1,0 +1,50 @@
+1. Especifique algumas portas importantes pré-definidas para o protocolo TCP/IP.
+
+Porta 80 - HTTP
+Porta 81 - Skype
+Portas 23 - Telnet
+Porta 22 - SSH
+Porta 20/21 - FTP
+Porta 7 - ECHO (ping)
+Porta 53 - DNS
+
+2. Com relação a endereços IP, responda:
+
+(a) Qual é a diferença entre endereços IP externos e locais?
+	IPs locais são endereços de redes locais, ou seja, que não fazem parte da internet,
+já os IPs externos são aqueles para utilizados para acesso a internet
+
+(b) Como endereços IP externos são definidos? Quem os define?
+	A definição de IP exetrnos é feito por meio do protocolo DHCP pelo porta 68. O usuário ao acessar uma rede
+envia um pacote UDP em broadcast (destinado à todas as máquinas) com uma requisição DHCP, qualquer servidor DHCP da rede
+pode responder essa requisição e, caso o usuário se enquadre em uma série de critérios, envia um pacote pro usuário com informações
+de IPs da rede externa.
+
+(c) Como endereços IP locais são definidos? Quem os define?
+	Os IPs locais são definidos pelo sistema operacional.
+
+(d) O que é o DNS? Para que ele serve?
+	DNS é um sitema de nomes de dominío que serve basicamente para associar nomes de dominío (mais facilmente memoráveis) a endereços 
+de IPs numéricos necessários para localizar e identificar serviços e dispositivos na rede.
+
+3. Com relação à pilha de protocolos TCP/IP, responda:
+
+(a) O que são suas camadas? Para que servem?
+	Enlace, rede, trasporte, aplicação
+
+(b) Quais são as camadas existentes? Para que servem?
+	Física, enlace, rede, trasporte, aplicação. As camadas são responsáveis para contralar trafego de informações de rede de uma forma
+geral
+(c) Quais camadas são utilizadas pela biblioteca de sockets?
+	Aplicação e transporte.
+
+(d) As portas usadas por servidores na função bind() se referem a qual camada?
+	Transporte
+
+(e) Os endereços usados por clientes na função connect() se referem a qual camada?
+	Aplicação
+
+4. Qual é a diferença entre os métodos `GET` e `POST` no protocolo HTTP?
+	No comando GET os parâmetros da requisção são passados no cabeçãlho do pacote enviado, já o POST envia 
+os parâmetros no corpo da requisição HTTP, escondendo-os da URI.
+
