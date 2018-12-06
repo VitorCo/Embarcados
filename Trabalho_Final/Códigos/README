@@ -1,0 +1,25 @@
+Forma de Compilar o Codigo:
+
+g++ MJPEGWriter.cpp main.cpp -o SmartDoorBell -std=c++11 -lpthread -lwiringPi -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto `pkg-config opencv --cflags --libs`
+
+Necessário Instalar as Bibliotecas e as dependências necessárias:
+
+WiringPi:
+
+	$ git clone git://git.drogon.net/wiringPi
+	$ cd ~/wiringPi
+	$ ./build
+
+tgbot-cpp:
+
+	git clone https://github.com/reo7sp/tgbot-cpp
+	sudo apt-get install g++ make binutils cmake libssl-dev libboost-system-dev
+	cd tgbot-cpp
+	cmake .
+	make -j4
+	sudo make install
+
+OpenCV:
+
+Necessário instalar o OpenCV na Raspberry para que o streaming funcione.
+https://www.pyimagesearch.com/2015/10/26/how-to-install-opencv-3-on-raspbian-jessie/
