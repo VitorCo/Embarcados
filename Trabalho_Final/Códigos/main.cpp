@@ -27,9 +27,9 @@ void* pisca_led(void*){
 
 void* push_notification(void*){
 
-	system("curl -s -X POST https://api.telegram.org/bot785342648:AAEJRJ9gwGZvgA86lXmd83U11IgXYOzgugo/sendMessage -d chat_id=-312166514 -d text='SmartDoorBell - Acionamento da Campainha'");
+	system("curl -s -X POST https://api.telegram.org/XXXXXXXX/sendMessage -d chat_id=XXXXXXX -d text='SmartDoorBell - Acionamento da Campainha'");
 	delay(20);
-	system("curl -s -X POST 'https://api.telegram.org/bot785342648:AAEJRJ9gwGZvgA86lXmd83U11IgXYOzgugo/sendPhoto' -F chat_id=-312166514 -F photo='@/home/pi/MJPEGWriter/FotoSmartDoorbell.jpg'");
+	system("curl -s -X POST 'https://api.telegram.org/XXXXXXXX/sendPhoto' -F chat_id=-XXXXXXX -F photo='@/home/pi/MJPEGWriter/FotoSmartDoorbell.jpg'");
 	return NULL;
 }
 
@@ -67,12 +67,12 @@ printf("Streaming Disponivel\n");
 
 void* telegram_bot(void*){
 
-	TgBot::Bot bot("785342648:AAEJRJ9gwGZvgA86lXmd83U11IgXYOzgugo");
+	TgBot::Bot bot("XXXXXXXXX"); #Inserir o TOKEN do Bot
 
 	bot.getEvents().onCommand("capture", [&bot](TgBot::Message::Ptr message) {
 	bot.getApi().sendMessage(message->chat->id, "Uma foto está sendo capturada e chegará em breve.");
     system("raspistill -o /home/pi/MJPEGWriter/FotoSmartDoorbell.jpg");
-   	system("curl -s -X POST 'https://api.telegram.org/bot785342648:AAEJRJ9gwGZvgA86lXmd83U11IgXYOzgugo/sendPhoto' -F chat_id=-312166514 -F photo='@/home/pi/MJPEGWriter/FotoSmartDoorbell.jpg'");
+   	system("curl -s -X POST 'https://api.telegram.org/XXXXXXXXX/sendPhoto' -F chat_id=<XXXXXX> -F photo='@/home/pi/MJPEGWriter/FotoSmartDoorbell.jpg'");
     });
 
     bot.getEvents().onCommand("call", [&bot](TgBot::Message::Ptr message) {
@@ -130,7 +130,7 @@ void tratamento_alarme(int sig)
 		system("arecord -D plughw:1 --duration=10 -f cd -vv ~/MJPEGWriter/rectest.wav");
 		delay(10500);
 		digitalWrite(1, LOW);  // desliga o pino 1
-		system("curl -s -X POST https://api.telegram.org/bot785342648:AAEJRJ9gwGZvgA86lXmd83U11IgXYOzgugo/sendAudio -F chat_id=-312166514 -F audio='@/home/pi/MJPEGWriter/rectest.wav'");
+		system("curl -s -X POST https://api.telegram.org/XXXXXXXXX/sendAudio -F chat_id=<XXXXXXX> -F audio='@/home/pi/MJPEGWriter/rectest.wav'");
 	}
 
 	if(flag==1){
